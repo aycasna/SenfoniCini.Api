@@ -15,17 +15,22 @@ public static class DbInitializer
                 await roleManager.CreateAsync(new IdentityRole(role));
         }
 
-        // Create Admin User
+        // Seed Admin User
         var adminEmail = "admin@example.com";
         var adminUser = await userManager.FindByEmailAsync(adminEmail);
         if (adminUser == null)
         {
             adminUser = new ApplicationUser
             {
-                UserName = adminEmail,
+                UserName = "admin",
+                FirstName = "Admin",
+                LastName = "User",
                 Email = adminEmail,
-                EmailConfirmed = true
-            };
+                EmailConfirmed = true,
+                Address = "Admin HQ",
+                City = "Admin City",
+                ZipCode = "Admin Zipcode"
+            }; 
             var result = await userManager.CreateAsync(adminUser, "Admin123!");
 
             if (result.Succeeded)

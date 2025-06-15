@@ -14,4 +14,6 @@ public class ApplicationUser : IdentityUser
     public ICollection<Order> Orders { get; set; }
     public ICollection<CartItem> CartItems { get; set; }
 
-}
+    public ICollection<StockLog> StockLogs { get; set; }
+
+    }

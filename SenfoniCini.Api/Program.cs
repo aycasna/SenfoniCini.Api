@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using SenfoniCini.Api.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -26,6 +27,13 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+// Ensure the database is created and seeded with roles and admin user
+using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+    await DbInitializer.SeedRolesAndAdminAsync(services);
+}
+
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
@@ -35,8 +43,4 @@ app.MapControllers();
 app.Run();
 
 
-using (var scope = app.Services.CreateScope())
-{
-    var services = scope.ServiceProvider;
-    await DbInitializer.SeedRolesAndAdminAsync(services);
-}
+
