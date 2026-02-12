@@ -11,7 +11,10 @@
         public string UserPhoneNumber { get; set; }
         public DateTime OrderDate { get; set; }
         public decimal TotalAmount { get; set; }
+        public string ShippingAddress { get; set; }
+        public string ShippingCity { get; set; }
         public decimal ShippingFee { get; set; }
+        public string ShippingPostalCode { get; set; }
         public string Status { get; set; } 
     }
 }
